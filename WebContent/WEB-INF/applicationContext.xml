@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- 开启AOP注解开关	 -->
+	<aop:aspectj-autoproxy/>
+	<!-- 开启注解自动扫描 -->
+	<context:component-scan base-package="com.mitu"/>
+	
+	<!-- 配置Mybatis数据源连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<!-- 设置连接数据库驱动 -->
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<!-- 配置连接数据库的URL -->
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/ssm?characterEncoding=UTF-8"/>
+		<property name="user" value="root"/>
+        <property name="password" value="123456"/>
+        
+        <!-- ###配置数据源连接池### -->
+        <!-- 配置连接池中的最大连接数 -->
+        <property name="maxPoolSize" value="5"/>
+        <!-- 配置连接池中的最小连接数 -->
+        <property name="minPoolSize" value="1"/>
+        <!-- 配置初始化连接池的连接数(默认3，必须在最大最小连接数之间) -->
+        <property name="initialPoolSize" value="1"/>
+        <!-- 配置连接池中连接耗尽批量创建连接数(默认值3) -->
+        <property name="acquireIncrement" value="1"/>
+        <!-- 配置连接池中空闲连接超时时长(超时后连接对象‘应该’被销毁) -->
+        <property name="maxIdleTime" value="5000"/>
+        <!-- 配置连接池检测线程间隔时长 -->
+        <property name="idleConnectionTestPeriod" value="3600"/>
+	</bean>
+	
+	<!-- 配置JDBC事务管理 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 配置SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="typeAliasesPackage" value="com.mitu.entity"/>
+	</bean>
+	
+	<!-- 配置Mapper扫描模式 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.mitu.mapper"/>
+		<property name="markerInterface" value="com.mitu.mapper.SqlMapper"/>
+	</bean>
+</beans>
+
