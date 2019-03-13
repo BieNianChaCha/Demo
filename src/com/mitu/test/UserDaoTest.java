@@ -29,7 +29,7 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests{
 	private IUserDao userDao;
 	@Test	//声明JUnit测试方法
 	public void getUserTest() {
-		UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));//qweoiruoiqwuer
+		UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));//qweoiruoiqwuer123456
 		//断言
 //		org.springframework.util.Assert.notNull(uEntity, "用户实体对象不应该为空");
 		assertNotNull("用户实体对象不应该为空", uEntity);
