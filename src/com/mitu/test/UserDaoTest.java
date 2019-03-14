@@ -23,11 +23,19 @@ import com.mitu.entity.UserEntity;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)//启动JUnit框架
-@ContextConfiguration(locations= {"file:WebContent/WEB-INF/applicationContext.xml"})//加载SpringIoC容器
+@ContextConfiguration(locations= {"file:WebContent/WEB-INF/applicationContext.xml"})
 public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests{
 	@Autowired
 	private IUserDao userDao;
 	@Test	//声明JUnit测试方法
+	public void getUserTest() {
+		UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));//qweoiruoiqwuer123456
+		//断言
+//		org.springframework.util.Assert.notNull(uEntity, "用户实体对象不应该为空");
+		assertNotNull("用户实体对象不应该为空", uEntity);
+		//断言密码
+		assertEquals("密码不为123456", "123456", uEntity.getPassword());
+	}
 	public void getUserTest() {
 		UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));//qweoiruoiqwuer123456
 		//断言
