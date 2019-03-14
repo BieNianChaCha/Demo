@@ -56,15 +56,16 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests{
                 assertEquals("密码不为123456", "123456", uEntity.getPassword());
         }
         //测试三
-	public void getUserTest3() {
+    public void getUserTest3() {
         UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));
         //断言
-//      org.springframework.util.Assert.notNull(uEntity, "用户实体对象不应该为空");
+	//org.springframework.util.Assert.notNull(uEntity, "用户实体对象不应该为空");
         assertNotNull("用户实体对象不应该为空", uEntity);
         //断言密码
         assertEquals("密码不为123456", "123456", uEntity.getPassword());
     }
-	public void getUserTest4() {
+	//测试四
+    public void getUserTest4() {
         UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));
         //断言
 //      org.springframework.util.Assert.notNull(uEntity, "用户实体对象不应该为空");
