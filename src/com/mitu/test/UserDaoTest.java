@@ -18,7 +18,7 @@ import com.mitu.dao.IUserDao;
 import com.mitu.entity.UserEntity;
 
 /**
- * 	用户Dao单元测试用例
+ * 	用户Dao单元测试
  * @author zhangchengjia
  *
  */
@@ -73,7 +73,7 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests{
         //断言密码
         assertEquals("密码不为123456", "123456", uEntity.getPassword());
     }
-	
+	//测试五
 	public void getUserTest5() {
         UserEntity uEntity = userDao.getUser(new UserBean("mitu","123456"));
         //断言
