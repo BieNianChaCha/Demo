@@ -25,6 +25,7 @@ import com.mitu.entity.UserEntity;
 @RunWith(SpringJUnit4ClassRunner.class)//启动JUnit框架
 @ContextConfiguration(locations= {"file:WebContent/WEB-INF/applicationContext.xml"})
 public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests{
+	//测试冲突
 	@Autowired
 	private IUserDao userDao;
 	@Test	//声明JUnit测试方法
