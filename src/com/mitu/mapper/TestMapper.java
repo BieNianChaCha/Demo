@@ -1,2 +1,4 @@
-test
-test+1
+package com.mitu.mapper;
+public interface TestMapper {
+
+}
